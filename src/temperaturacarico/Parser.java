@@ -12,9 +12,9 @@ import org.w3c.dom.*;
 import org.xml.sax.*;
 
 
-public class VeicoliXML {
-
-    public static void readXMLFile(String filePath, double soglia) throws ParserConfigurationException, SAXException, IOException {
+public class Parser {
+    
+    public void readXMLFile(String filePath, double soglia) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(filePath);
