@@ -21,10 +21,8 @@ public class TemperaturaCarico {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         Scanner input = new Scanner(System.in);
         Parser parser = new Parser();
-        //File fXmlFile = new File(filePath);
-        double soglia;
         System.out.print("Inserire il valore di soglia con cui si vogliono confrontare le misure rilevate: ");
-        soglia = input.nextDouble();
+        double soglia = input.nextDouble();
         try {
             parser.readXMLFile(args[0], soglia);
         } catch (ParserConfigurationException | SAXException | IOException e) {
