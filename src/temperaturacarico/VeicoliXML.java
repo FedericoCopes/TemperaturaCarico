@@ -24,32 +24,26 @@ public class VeicoliXML {
 
         for (int i = 0; i < veicoloList.getLength(); i++) {
             Node veicoloNode = veicoloList.item(i);
-
             if (veicoloNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element veicoloElement = (Element) veicoloNode;
                 String id = veicoloElement.getElementsByTagName("ID").item(0).getTextContent();
                 NodeList misuraList = veicoloElement.getElementsByTagName("misura");
                 boolean bool = true;
                 List<Long> TimeStamp = new ArrayList<>();
-
                 for (int j = 0; j < misuraList.getLength(); j++) {
                     Node misuraNode = misuraList.item(j);
-
                     if (misuraNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element misuraElement = (Element) misuraNode;
                         double temperature = Double.parseDouble(misuraElement.getElementsByTagName("temperatura").item(0).getTextContent());
                         String dataOra = misuraElement.getElementsByTagName("data_ora").item(0).getTextContent();
-
                         if (temperature > soglia) {
                             bool = false;
-                            // Utilizzare la classe LocalDateTime o SimpleDateFormat per convertire la stringa dataOra in un oggetto Timestamp
                             LocalDateTime date = LocalDateTime.parse(dataOra);
                             long timestamp = date.toEpochSecond(ZoneOffset.UTC);
                             TimeStamp.add(timestamp);
                         }
                     }
                 }
-
                 System.out.println("Il veicolo con ID: " + id + " ha tutte le temperature sotto la soglia? : " + bool);
                 if (!bool) {
                     System.out.println("Timestamp in cui la temperatura e' superiore al valore di soglia : " + TimeStamp);
